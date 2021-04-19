@@ -95,11 +95,6 @@ class SLTester(TestPipLine):
         self.batch_number += 1
         if hps.model == "HSG2":
             outputs, adj_logits = model.forward(G)  # [n_snodes, 2]
-            adj = G.adjacency_matrix().to_dense()
-            if hps.cuda:
-                adj.to("cuda")
-            pos_weight = ((adj.shape[0] * adj.shape[0] - adj.sum()) / adj.sum())
-            loss2 = BCELoss(adj_logits, adj, pos_weight=pos_weight)
         if hps.model == "HSG":
             outputs = model.forward(G)  # [n_snodes, 2]
         # outputs = self.model.forward(G)

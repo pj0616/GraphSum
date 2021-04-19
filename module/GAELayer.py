@@ -56,8 +56,8 @@ class GAE(nn.Module):
 
     def encode(self, g):
         h = g.ndata['h']
-        for conv in self.layers:
-            h = conv(g, h)
+        # for conv in self.layers:
+        #     h = conv(g, h)
         return h
 
 class InnerProductDecoder(nn.Module):

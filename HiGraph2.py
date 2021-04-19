@@ -48,14 +48,15 @@ class HSumGraph2(nn.Module):
         self._embed = embed
         self.embed_size = hps.word_emb_dim
 
-
+        embed_size = hps.word_emb_dim
         # sent node feature
         self._init_sn_param()
         self._TFembed = nn.Embedding(10, hps.feat_embed_size)   # box=10
-        self.n_feature_proj = nn.Linear(hps.n_feature_size * 2, hps.hidden_size, bias=False)
-
+        self.n_feature_proj = nn.Linear(hps.n_feature_size * 2, embed_size, bias=False)
+        # self.fcw = nn.Linear(embed_size, embed_size, bias=False)
+        # self.fcw = nn.Linear(hps.hidden_size, embed_size, bias=False)
         # word -> sent
-        embed_size = hps.word_emb_dim
+        
         # self.word2sent = WSWGAT(in_dim=embed_size,
         #                         out_dim=hps.hidden_size,
         #                         num_heads=hps.n_head,
@@ -76,7 +77,7 @@ class HSumGraph2(nn.Module):
         #                         feat_embed_size=hps.feat_embed_size,
         #                         layerType="S2W"
         #                         )
-        self.gae = GAE(in_dim=embed_size, out_dim=hps.hidden_size)
+        self.gae = GAE(in_dim=embed_size, hidden_dims=[embed_size//2, hps.hidden_size])
 
         
 
@@ -100,10 +101,17 @@ class HSumGraph2(nn.Module):
 
         sent_feature = self.n_feature_proj(self.set_snfeature(graph))    # [snode, n_feature_size]
 
+        wnode_id = graph.filter_nodes(lambda nodes: nodes.data["unit"]==0)
+        # h = self.fcw(word_feature)
+        graph.nodes[wnode_id].data["h"] = word_feature
+        snode_id = graph.filter_nodes(lambda nodes: nodes.data["dtype"] == 1)
+        # h = self.fcs(sent_feature)
+        graph.nodes[snode_id].data["h"] = sent_feature
+
 
         adj_logits = self.gae.forward(graph)
         node_encode = self.gae.encode(graph)
-        snode_id = g.filter_nodes(lambda nodes: nodes.data["unit"] == 1)
+        snode_id = graph.filter_nodes(lambda nodes: nodes.data["unit"] == 1)
         sent_state = node_encode[snode_id]
 
         # # the start state

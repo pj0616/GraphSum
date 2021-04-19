@@ -325,9 +325,9 @@ def main():
 
     parser.add_argument('-m', type=int, default=3, help='decode summary length')
 
-    args = parser.parse_args(['--cuda', '--data_dir', '../data/cnndm', '--cache_dir', '../data/cache/CNNDM', '--model', 'HSG2', '--log_root', '../data/log/',
+    args = parser.parse_args(['--cuda','--data_dir', '../data/cnndm', '--gpu', '1', '--cache_dir', '../data/cache/CNNDM', '--log_root', '../data/log/',
     '--batch_size', '32',
-     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../save3/', '--restore_model', 'None'])
+     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG2', '--save_root', '../data/save3/', '--restore_model', 'None'])
 
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
     torch.set_printoptions(threshold=50000)
