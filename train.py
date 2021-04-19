@@ -124,8 +124,8 @@ def run_training(model, train_loader, valid_loader, valset, hps, train_dir):
                     adj.to("cuda")
                 pos_weight = ((adj.shape[0] * adj.shape[0] - adj.sum()) / adj.sum())
                 loss2 = BCELoss(adj_logits, adj, pos_weight=pos_weight)
-
-            outputs = model.forward(G)  # [n_snodes, 2]
+            if hps.model == "HSG":
+                outputs = model.forward(G)  # [n_snodes, 2]
             snode_id = G.filter_nodes(lambda nodes: nodes.data["dtype"] == 1)
             label = G.ndata["label"][snode_id].sum(-1)  # [n_nodes]
             G.nodes[snode_id].data["loss"] = criterion(outputs, label).unsqueeze(-1)  # [n_nodes, 1]
@@ -219,7 +219,7 @@ def run_eval(model, loader, valset, hps, best_loss, best_F, non_descent_cnt, sav
         for i, (G, index) in enumerate(loader):
             if hps.cuda:
                 G.to(torch.device("cuda"))
-            tester.evaluation(G, index, valset)
+            tester.evaluation(G, index, valset, hps)
 
     running_avg_loss = tester.running_avg_loss
 
@@ -325,7 +325,8 @@ def main():
 
     parser.add_argument('-m', type=int, default=3, help='decode summary length')
 
-    args = parser.parse_args(['--data_dir', '../data/cnndm', '--cache_dir', '../data/cache/CNNDM', '--model', 'HSG2', '--log_root', '../data/log/',
+    args = parser.parse_args(['--cuda', '--data_dir', '../data/cnndm', '--cache_dir', '../data/cache/CNNDM', '--model', 'HSG2', '--log_root', '../data/log/',
+    '--batch_size', '32',
      '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../save3/', '--restore_model', 'None'])
 
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
