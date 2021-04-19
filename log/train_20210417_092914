@@ -1,0 +1,232 @@
+2021-04-17 09:29:14,358 INFO    : Pytorch 1.8.1
+2021-04-17 09:29:14,358 INFO    : [INFO] Create Vocab, vocab path is ./data/cache/MultiNews/vocab
+2021-04-17 09:29:14,433 INFO    : [INFO] max_size of vocab was specified as 50000; we now have 50000 words. Stopping reading.
+2021-04-17 09:29:14,433 INFO    : [INFO] Finished constructing vocabulary of 50000 total words. Last word added: medicated
+2021-04-17 09:29:14,645 INFO    : [INFO] Loading external word embedding...
+2021-04-17 09:29:37,261 INFO    : [INFO] External Word Embedding iov count: 46729, oov count: 3271
+2021-04-17 09:29:37,441 INFO    : Namespace(atten_dropout_prob=0.1, batch_size=32, bidirectional=True, cache_dir='./data/cache/MultiNews', cuda=False, data_dir='./data/multinews', doc_max_timesteps=50, embed_train=False, embedding_path='./data/glove.6B/glove.6B.300d.txt', feat_embed_size=50, ffn_dropout_prob=0.1, ffn_inner_hidden_size=512, gpu='0', grad_clip=False, hidden_size=64, log_root='log/', lr=0.0005, lr_descent=False, lstm_hidden_state=128, lstm_layers=2, m=3, max_grad_norm=1.0, model='HSG', n_epochs=20, n_feature_size=128, n_head=8, n_iter=1, n_layers=1, recurrent_dropout_prob=0.1, restore_model='None', save_root='save/', sent_max_len=100, use_orthnormal_init=True, vocab_size=50000, word_emb_dim=300, word_embedding=True)
+2021-04-17 09:29:37,767 INFO    : [MODEL] HeterSumGraph 
+2021-04-17 09:29:37,767 INFO    : [INFO] Start reading ExampleSet
+2021-04-17 09:29:40,453 INFO    : [INFO] Finish reading ExampleSet. Total time is 2.685842, Total size is 44972
+2021-04-17 09:29:40,454 INFO    : [INFO] Loading filter word File ./data/cache/MultiNews/filter_word.txt
+2021-04-17 09:29:40,542 INFO    : [INFO] Loading word2sent TFIDF file from ./data/cache/MultiNews/train.w2s.tfidf.jsonl!
+2021-04-17 09:29:52,885 INFO    : [INFO] Start reading ExampleSet
+2021-04-17 09:29:54,187 INFO    : [INFO] Finish reading ExampleSet. Total time is 1.301028, Total size is 5622
+2021-04-17 09:29:54,187 INFO    : [INFO] Loading filter word File ./data/cache/MultiNews/filter_word.txt
+2021-04-17 09:29:54,344 INFO    : [INFO] Loading word2sent TFIDF file from ./data/cache/MultiNews/val.w2s.tfidf.jsonl!
+2021-04-17 09:29:56,738 INFO    : [INFO] Create new model for training...
+2021-04-17 09:29:56,739 INFO    : [INFO] Starting run_training
+2021-04-17 09:30:12,428 INFO    :        | end of iter   0 | time:  7.50s | train loss 0.1560 | 
+2021-04-17 09:35:35,637 INFO    :        | end of iter 100 | time:  3.74s | train loss 14.7205 | 
+2021-04-17 09:40:37,001 INFO    :        | end of iter 200 | time:  3.11s | train loss 14.3836 | 
+2021-04-17 09:46:01,684 INFO    :        | end of iter 300 | time:  3.47s | train loss 14.2648 | 
+2021-04-17 09:51:33,511 INFO    :        | end of iter 400 | time:  3.39s | train loss 14.1002 | 
+2021-04-17 09:56:46,230 INFO    :        | end of iter 500 | time:  3.32s | train loss 14.0719 | 
+2021-04-17 10:02:10,883 INFO    :        | end of iter 600 | time:  3.27s | train loss 13.9861 | 
+2021-04-17 10:07:30,190 INFO    :        | end of iter 700 | time:  2.92s | train loss 13.9181 | 
+2021-04-17 10:12:50,335 INFO    :        | end of iter 800 | time:  3.05s | train loss 13.7917 | 
+2021-04-17 10:18:16,351 INFO    :        | end of iter 900 | time:  2.77s | train loss 13.7808 | 
+2021-04-17 10:23:43,278 INFO    :        | end of iter 1000 | time:  3.51s | train loss 13.8030 | 
+2021-04-17 10:29:29,038 INFO    :        | end of iter 1100 | time:  2.78s | train loss 13.8039 | 
+2021-04-17 10:35:05,275 INFO    :        | end of iter 1200 | time:  4.23s | train loss 13.7194 | 
+2021-04-17 10:40:34,570 INFO    :        | end of iter 1300 | time:  2.75s | train loss 13.6433 | 
+2021-04-17 10:46:04,600 INFO    :        | end of iter 1400 | time:  2.87s | train loss 13.6714 | 
+2021-04-17 10:46:19,439 INFO    :    | end of epoch   1 | time: 4582.70s | epoch train loss 13.9744 | 
+2021-04-17 10:46:19,440 INFO    : [INFO] Found new best model with 13.974 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 10:46:19,643 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 10:46:19,643 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 10:52:35,365 INFO    : [INFO] End of valid | time: 375.72s | valid loss 13.6634 | 
+2021-04-17 10:52:35,366 INFO    : Rouge1:
+	p:0.570548, r:0.226238, f:0.311814
+Rouge2:
+	p:0.199034, r:0.078000, f:0.107992
+Rougel:
+	p:0.457503, r:0.209503, f:0.280062
+
+2021-04-17 10:52:35,366 INFO    : [INFO] Validset match_true 10671, pred 16864, true 50291, total 121375, match 75562
+2021-04-17 10:52:35,367 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.622550, precision is 0.632768, recall is 0.212185, F is 0.317802
+2021-04-17 10:52:35,367 INFO    : [INFO] Found new best model with 13.663446 running_avg_loss. The original loss is None, Saving to save/eval/bestmodel_0
+2021-04-17 10:52:35,526 INFO    : [INFO] Found new best model with 0.317802 F. The original F is None, Saving to save/eval/bestFmodel
+2021-04-17 10:52:55,439 INFO    :        | end of iter   0 | time:  9.54s | train loss 0.1371 | 
+2021-04-17 10:58:28,188 INFO    :        | end of iter 100 | time:  3.01s | train loss 13.7441 | 
+2021-04-17 11:03:34,659 INFO    :        | end of iter 200 | time:  2.56s | train loss 13.5518 | 
+2021-04-17 11:08:44,761 INFO    :        | end of iter 300 | time:  2.90s | train loss 13.5326 | 
+2021-04-17 11:14:04,816 INFO    :        | end of iter 400 | time:  3.06s | train loss 13.5287 | 
+2021-04-17 11:19:12,277 INFO    :        | end of iter 500 | time:  2.72s | train loss 13.6335 | 
+2021-04-17 11:24:13,938 INFO    :        | end of iter 600 | time:  2.92s | train loss 13.6475 | 
+2021-04-17 11:29:27,948 INFO    :        | end of iter 700 | time:  2.88s | train loss 13.4783 | 
+2021-04-17 11:34:46,121 INFO    :        | end of iter 800 | time:  3.59s | train loss 13.6921 | 
+2021-04-17 11:40:20,251 INFO    :        | end of iter 900 | time:  3.67s | train loss 13.5682 | 
+2021-04-17 11:45:45,196 INFO    :        | end of iter 1000 | time:  3.46s | train loss 13.4976 | 
+2021-04-17 11:51:03,753 INFO    :        | end of iter 1100 | time:  4.02s | train loss 13.4435 | 
+2021-04-17 11:56:16,784 INFO    :        | end of iter 1200 | time:  4.18s | train loss 13.4784 | 
+2021-04-17 12:01:34,422 INFO    :        | end of iter 1300 | time:  2.75s | train loss 13.5043 | 
+2021-04-17 12:06:32,604 INFO    :        | end of iter 1400 | time:  2.73s | train loss 13.4410 | 
+2021-04-17 12:06:47,648 INFO    :    | end of epoch   2 | time: 4451.90s | epoch train loss 13.5521 | 
+2021-04-17 12:06:47,649 INFO    : [INFO] Found new best model with 13.552 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 12:06:47,883 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 12:06:47,883 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 12:12:37,126 INFO    : [INFO] End of valid | time: 349.24s | valid loss 13.4220 | 
+2021-04-17 12:12:37,126 INFO    : Rouge1:
+	p:0.583217, r:0.209228, f:0.295998
+Rouge2:
+	p:0.208384, r:0.073575, f:0.104671
+Rougel:
+	p:0.474292, r:0.200125, f:0.273993
+
+2021-04-17 12:12:37,126 INFO    : [INFO] Validset match_true 10749, pred 16864, true 50291, total 121375, match 75718
+2021-04-17 12:12:37,127 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.623835, precision is 0.637393, recall is 0.213736, F is 0.320125
+2021-04-17 12:12:37,127 INFO    : [INFO] Found new best model with 13.422023 running_avg_loss. The original loss is 13.663446, Saving to save/eval/bestmodel_1
+2021-04-17 12:12:37,299 INFO    : [INFO] Found new best model with 0.320125 F. The original F is 0.317802, Saving to save/eval/bestFmodel
+2021-04-17 12:12:57,681 INFO    :        | end of iter   0 | time:  9.42s | train loss 0.1387 | 
+2021-04-17 12:18:24,613 INFO    :        | end of iter 100 | time:  2.88s | train loss 13.3316 | 
+2021-04-17 12:23:48,853 INFO    :        | end of iter 200 | time:  2.88s | train loss 13.4208 | 
+2021-04-17 12:29:15,455 INFO    :        | end of iter 300 | time:  3.72s | train loss 13.3979 | 
+2021-04-17 12:34:37,406 INFO    :        | end of iter 400 | time:  3.48s | train loss 13.5210 | 
+2021-04-17 12:40:10,284 INFO    :        | end of iter 500 | time:  4.23s | train loss 13.3337 | 
+2021-04-17 12:45:40,972 INFO    :        | end of iter 600 | time:  3.45s | train loss 13.3708 | 
+2021-04-17 12:51:06,850 INFO    :        | end of iter 700 | time:  3.74s | train loss 13.3326 | 
+2021-04-17 12:56:35,834 INFO    :        | end of iter 800 | time:  3.12s | train loss 13.3454 | 
+2021-04-17 13:01:56,995 INFO    :        | end of iter 900 | time:  3.55s | train loss 13.3865 | 
+2021-04-17 13:07:06,934 INFO    :        | end of iter 1000 | time:  3.04s | train loss 13.3524 | 
+2021-04-17 13:12:23,671 INFO    :        | end of iter 1100 | time:  2.84s | train loss 13.3211 | 
+2021-04-17 13:17:44,017 INFO    :        | end of iter 1200 | time:  2.84s | train loss 13.3214 | 
+2021-04-17 13:23:05,477 INFO    :        | end of iter 1300 | time:  2.74s | train loss 13.3541 | 
+2021-04-17 13:28:28,472 INFO    :        | end of iter 1400 | time:  3.49s | train loss 13.3284 | 
+2021-04-17 13:28:43,722 INFO    :    | end of epoch   3 | time: 4566.19s | epoch train loss 13.3663 | 
+2021-04-17 13:28:43,723 INFO    : [INFO] Found new best model with 13.366 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 13:28:43,946 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 13:28:43,946 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 13:34:26,390 INFO    : [INFO] End of valid | time: 342.44s | valid loss 13.3662 | 
+2021-04-17 13:34:26,391 INFO    : Rouge1:
+	p:0.595894, r:0.192492, f:0.279639
+Rouge2:
+	p:0.218244, r:0.069460, f:0.101400
+Rougel:
+	p:0.491719, r:0.189852, f:0.266324
+
+2021-04-17 13:34:26,391 INFO    : [INFO] Validset match_true 10824, pred 16864, true 50291, total 121375, match 75868
+2021-04-17 13:34:26,392 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.625071, precision is 0.641841, recall is 0.215227, F is 0.322359
+2021-04-17 13:34:26,392 INFO    : [INFO] Found new best model with 13.366162 running_avg_loss. The original loss is 13.422023, Saving to save/eval/bestmodel_2
+2021-04-17 13:34:26,563 INFO    : [INFO] Found new best model with 0.322359 F. The original F is 0.320125, Saving to save/eval/bestFmodel
+2021-04-17 13:34:47,808 INFO    :        | end of iter   0 | time:  9.73s | train loss 0.1320 | 
+2021-04-17 13:40:08,549 INFO    :        | end of iter 100 | time:  4.12s | train loss 13.2017 | 
+2021-04-17 13:45:36,595 INFO    :        | end of iter 200 | time:  3.55s | train loss 13.2300 | 
+2021-04-17 13:50:54,115 INFO    :        | end of iter 300 | time:  2.71s | train loss 13.1757 | 
+2021-04-17 13:56:22,824 INFO    :        | end of iter 400 | time:  2.77s | train loss 13.1946 | 
+2021-04-17 14:01:50,128 INFO    :        | end of iter 500 | time:  2.78s | train loss 13.2609 | 
+2021-04-17 14:07:18,194 INFO    :        | end of iter 600 | time:  3.34s | train loss 13.2439 | 
+2021-04-17 14:12:30,312 INFO    :        | end of iter 700 | time:  3.00s | train loss 13.2451 | 
+2021-04-17 14:17:45,163 INFO    :        | end of iter 800 | time:  2.82s | train loss 13.2052 | 
+2021-04-17 14:23:07,003 INFO    :        | end of iter 900 | time:  3.96s | train loss 13.3861 | 
+2021-04-17 14:28:29,683 INFO    :        | end of iter 1000 | time:  3.65s | train loss 13.2528 | 
+2021-04-17 14:33:44,212 INFO    :        | end of iter 1100 | time:  2.70s | train loss 13.2454 | 
+2021-04-17 14:39:03,568 INFO    :        | end of iter 1200 | time:  2.77s | train loss 13.2132 | 
+2021-04-17 14:44:16,007 INFO    :        | end of iter 1300 | time:  3.64s | train loss 13.2460 | 
+2021-04-17 14:49:25,151 INFO    :        | end of iter 1400 | time:  2.79s | train loss 13.2760 | 
+2021-04-17 14:49:38,817 INFO    :    | end of epoch   4 | time: 4512.06s | epoch train loss 13.2413 | 
+2021-04-17 14:49:38,818 INFO    : [INFO] Found new best model with 13.241 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 14:49:39,028 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 14:49:39,028 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 14:55:34,363 INFO    : [INFO] End of valid | time: 355.33s | valid loss 13.2419 | 
+2021-04-17 14:55:34,364 INFO    : Rouge1:
+	p:0.583754, r:0.219330, f:0.306238
+Rouge2:
+	p:0.209444, r:0.077252, f:0.108519
+Rougel:
+	p:0.474119, r:0.205953, f:0.279325
+
+2021-04-17 14:55:34,364 INFO    : [INFO] Validset match_true 11152, pred 16864, true 50291, total 121375, match 76524
+2021-04-17 14:55:34,364 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.630476, precision is 0.661290, recall is 0.221749, F is 0.332127
+2021-04-17 14:55:34,365 INFO    : [INFO] Found new best model with 13.241948 running_avg_loss. The original loss is 13.366162, Saving to save/eval/bestmodel_0
+2021-04-17 14:55:34,547 INFO    : [INFO] Found new best model with 0.332127 F. The original F is 0.322359, Saving to save/eval/bestFmodel
+2021-04-17 14:55:56,155 INFO    :        | end of iter   0 | time: 10.26s | train loss 0.1393 | 
+2021-04-17 15:01:22,539 INFO    :        | end of iter 100 | time:  3.48s | train loss 13.1997 | 
+2021-04-17 15:06:41,042 INFO    :        | end of iter 200 | time:  2.79s | train loss 13.1059 | 
+2021-04-17 15:11:59,688 INFO    :        | end of iter 300 | time:  2.73s | train loss 13.1406 | 
+2021-04-17 15:17:26,425 INFO    :        | end of iter 400 | time:  3.44s | train loss 13.1437 | 
+2021-04-17 15:22:32,016 INFO    :        | end of iter 500 | time:  3.01s | train loss 13.0917 | 
+2021-04-17 15:27:36,688 INFO    :        | end of iter 600 | time:  3.96s | train loss 13.1187 | 
+2021-04-17 15:32:42,931 INFO    :        | end of iter 700 | time:  2.77s | train loss 13.1796 | 
+2021-04-17 15:37:53,076 INFO    :        | end of iter 800 | time:  2.78s | train loss 13.2312 | 
+2021-04-17 15:42:59,934 INFO    :        | end of iter 900 | time:  3.78s | train loss 13.1852 | 
+2021-04-17 15:48:04,645 INFO    :        | end of iter 1000 | time:  3.85s | train loss 13.1780 | 
+2021-04-17 15:53:21,299 INFO    :        | end of iter 1100 | time:  3.04s | train loss 13.1512 | 
+2021-04-17 15:58:17,173 INFO    :        | end of iter 1200 | time:  2.82s | train loss 13.0456 | 
+2021-04-17 16:03:10,716 INFO    :        | end of iter 1300 | time:  2.68s | train loss 13.0349 | 
+2021-04-17 16:08:05,571 INFO    :        | end of iter 1400 | time:  2.73s | train loss 13.2392 | 
+2021-04-17 16:08:20,207 INFO    :    | end of epoch   5 | time: 4365.48s | epoch train loss 13.1491 | 
+2021-04-17 16:08:20,208 INFO    : [INFO] Found new best model with 13.149 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 16:08:20,437 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 16:08:20,438 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 16:14:09,971 INFO    : [INFO] End of valid | time: 349.53s | valid loss 13.2476 | 
+2021-04-17 16:14:09,971 INFO    : Rouge1:
+	p:0.581550, r:0.225230, f:0.312759
+Rouge2:
+	p:0.208626, r:0.079247, f:0.110763
+Rougel:
+	p:0.469538, r:0.210934, f:0.283845
+
+2021-04-17 16:14:09,971 INFO    : [INFO] Validset match_true 11150, pred 16864, true 50291, total 121375, match 76520
+2021-04-17 16:14:09,972 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.630443, precision is 0.661172, recall is 0.221710, F is 0.332068
+2021-04-17 16:14:29,629 INFO    :        | end of iter   0 | time:  8.87s | train loss 0.1323 | 
+2021-04-17 16:19:50,849 INFO    :        | end of iter 100 | time:  3.35s | train loss 13.0396 | 
+2021-04-17 16:25:01,769 INFO    :        | end of iter 200 | time:  3.24s | train loss 13.1159 | 
+2021-04-17 16:30:13,867 INFO    :        | end of iter 300 | time:  2.80s | train loss 13.1093 | 
+2021-04-17 16:35:19,217 INFO    :        | end of iter 400 | time:  2.99s | train loss 13.1264 | 
+2021-04-17 16:40:19,178 INFO    :        | end of iter 500 | time:  2.82s | train loss 13.0323 | 
+2021-04-17 16:45:28,106 INFO    :        | end of iter 600 | time:  2.83s | train loss 13.0576 | 
+2021-04-17 16:50:34,958 INFO    :        | end of iter 700 | time:  3.61s | train loss 12.9590 | 
+2021-04-17 16:55:50,035 INFO    :        | end of iter 800 | time:  2.65s | train loss 13.0662 | 
+2021-04-17 17:01:01,116 INFO    :        | end of iter 900 | time:  4.33s | train loss 13.0481 | 
+2021-04-17 17:06:13,881 INFO    :        | end of iter 1000 | time:  2.75s | train loss 13.0707 | 
+2021-04-17 17:11:19,084 INFO    :        | end of iter 1100 | time:  2.82s | train loss 13.0550 | 
+2021-04-17 17:16:28,388 INFO    :        | end of iter 1200 | time:  2.73s | train loss 13.1205 | 
+2021-04-17 17:21:21,817 INFO    :        | end of iter 1300 | time:  2.66s | train loss 13.0342 | 
+2021-04-17 17:26:19,151 INFO    :        | end of iter 1400 | time:  2.81s | train loss 12.9500 | 
+2021-04-17 17:26:34,622 INFO    :    | end of epoch   6 | time: 4344.64s | epoch train loss 13.0568 | 
+2021-04-17 17:26:34,624 INFO    : [INFO] Found new best model with 13.057 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 17:26:34,833 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 17:26:34,833 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 17:32:24,137 INFO    : [INFO] End of valid | time: 349.30s | valid loss 13.2192 | 
+2021-04-17 17:32:24,138 INFO    : Rouge1:
+	p:0.590486, r:0.211447, f:0.300046
+Rouge2:
+	p:0.214630, r:0.075746, f:0.108082
+Rougel:
+	p:0.481635, r:0.202476, f:0.278057
+
+2021-04-17 17:32:24,138 INFO    : [INFO] Validset match_true 11048, pred 16864, true 50291, total 121375, match 76316
+2021-04-17 17:32:24,138 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.628762, precision is 0.655123, recall is 0.219681, F is 0.329030
+2021-04-17 17:32:24,138 INFO    : [INFO] Found new best model with 13.219210 running_avg_loss. The original loss is 13.241948, Saving to save/eval/bestmodel_1
+2021-04-17 17:32:43,785 INFO    :        | end of iter   0 | time:  8.73s | train loss 0.1361 | 
+2021-04-17 17:38:10,964 INFO    :        | end of iter 100 | time:  2.75s | train loss 12.8858 | 
+2021-04-17 17:43:21,101 INFO    :        | end of iter 200 | time:  3.65s | train loss 12.9086 | 
+2021-04-17 17:48:34,101 INFO    :        | end of iter 300 | time:  2.72s | train loss 12.9659 | 
+2021-04-17 17:53:32,588 INFO    :        | end of iter 400 | time:  2.78s | train loss 12.8397 | 
+2021-04-17 17:58:51,574 INFO    :        | end of iter 500 | time:  3.86s | train loss 12.9171 | 
+2021-04-17 18:04:00,083 INFO    :        | end of iter 600 | time:  2.88s | train loss 12.9357 | 
+2021-04-17 18:09:11,011 INFO    :        | end of iter 700 | time:  3.06s | train loss 13.0153 | 
+2021-04-17 18:14:19,444 INFO    :        | end of iter 800 | time:  2.82s | train loss 12.9670 | 
+2021-04-17 18:19:38,904 INFO    :        | end of iter 900 | time:  2.84s | train loss 13.0077 | 
+2021-04-17 18:24:54,027 INFO    :        | end of iter 1000 | time:  2.93s | train loss 13.0909 | 
+2021-04-17 18:30:04,933 INFO    :        | end of iter 1100 | time:  2.82s | train loss 12.9256 | 
+2021-04-17 18:35:12,414 INFO    :        | end of iter 1200 | time:  2.73s | train loss 13.0880 | 
+2021-04-17 18:40:25,689 INFO    :        | end of iter 1300 | time:  2.82s | train loss 12.9329 | 
+2021-04-17 18:45:33,128 INFO    :        | end of iter 1400 | time:  3.54s | train loss 12.8972 | 
+2021-04-17 18:45:48,995 INFO    :    | end of epoch   7 | time: 4404.68s | epoch train loss 12.9564 | 
+2021-04-17 18:45:48,996 INFO    : [INFO] Found new best model with 12.956 running_train_loss. Saving to save/train/bestmodel
+2021-04-17 18:45:49,166 INFO    : [INFO] Saving model to save/train/bestmodel
+2021-04-17 18:45:49,166 INFO    : [INFO] Starting eval for this model ...
+2021-04-17 18:51:30,640 INFO    : [INFO] End of valid | time: 341.47s | valid loss 13.2185 | 
+2021-04-17 18:51:30,641 INFO    : Rouge1:
+	p:0.588673, r:0.216460, f:0.305117
+Rouge2:
+	p:0.212862, r:0.076809, f:0.108939
+Rougel:
+	p:0.477640, r:0.205979, f:0.280774
+
+2021-04-17 18:51:30,641 INFO    : [INFO] Validset match_true 11144, pred 16864, true 50291, total 121375, match 76508
+2021-04-17 18:51:30,641 INFO    : [INFO] The size of totalset is 5622, sent_number is 121375, accu is 0.630344, precision is 0.660816, recall is 0.221590, F is 0.331889
+2021-04-17 18:51:30,641 INFO    : [INFO] Found new best model with 13.218492 running_avg_loss. The original loss is 13.219210, Saving to save/eval/bestmodel_2
+2021-04-17 18:51:48,304 INFO    :        | end of iter   0 | time:  9.27s | train loss 0.1241 | 
