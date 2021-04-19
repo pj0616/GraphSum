@@ -33,7 +33,7 @@ from module.GCN import WSWGCN
 from module.GAELayer import GAE
 from module.PositionEmbedding import get_sinusoid_encoding_table
 
-class HSumGraph(nn.Module):
+class HSumGraph2(nn.Module):
     """ without sent2sent and add residual connection """
     def __init__(self, hps, embed):
         """
@@ -174,7 +174,7 @@ class HSumGraph(nn.Module):
 
 
 
-class HSumDocGraph(HSumGraph):
+class HSumDocGraph(HSumGraph2):
     """
         without sent2sent and add residual connection
         add Document Nodes

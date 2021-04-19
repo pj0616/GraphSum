@@ -283,7 +283,7 @@ def main():
     parser.add_argument('--embedding_path', type=str, default='/remote-home/dqwang/Glove/glove.42B.300d.txt', help='Path expression to external word embedding.')
 
     # Important settings
-    parser.add_argument('--model', type=str, default='HSG', help='model structure[HSG|HDSG]')
+    parser.add_argument('--model', type=str, default='HSG', help='model structure[HSG|HSG2|HDSG]')
     parser.add_argument('--restore_model', type=str, default='None', help='Restore model for further training. [bestmodel/bestFmodel/earlystop/None]')
 
     # Where to save output
@@ -325,8 +325,8 @@ def main():
 
     parser.add_argument('-m', type=int, default=3, help='decode summary length')
 
-    args = parser.parse_args(['--cuda','--data_dir', './data/cnndm', '--gpu', '1', '--cache_dir', './data/cache/CNNDM',
-     '--embedding_path', './data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', 'save2/', '--restore_model', 'None'])
+    args = parser.parse_args(['--data_dir', '../data/cnndm', '--cache_dir', '../data/cache/CNNDM', '--model', 'HSG2', '--log_root', '../data/log/',
+     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../save3/', '--restore_model', 'None'])
 
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
     torch.set_printoptions(threshold=50000)
