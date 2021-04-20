@@ -1,4 +1,4 @@
-# HeterSumGraph
+# GraphSum
 HiGraph include the implement of GAT and GCN
 Higraph2 include the implement of GAE
 
