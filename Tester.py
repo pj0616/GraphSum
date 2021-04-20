@@ -94,9 +94,9 @@ class SLTester(TestPipLine):
         """
         self.batch_number += 1
         if hps.model == "HSG2":
-            outputs, adj_logits = model.forward(G)  # [n_snodes, 2]
+            outputs, adj_logits = self.model.forward(G)  # [n_snodes, 2]
         if hps.model == "HSG":
-            outputs = model.forward(G)  # [n_snodes, 2]
+            outputs = self.model.forward(G)  # [n_snodes, 2]
         # outputs = self.model.forward(G)
         # logger.debug(outputs)
         snode_id = G.filter_nodes(lambda nodes: nodes.data["dtype"] == 1)

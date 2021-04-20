@@ -104,6 +104,12 @@ def run_training(model, train_loader, valid_loader, valset, hps, train_dir):
     best_F = None
     non_descent_cnt = 0
     saveNo = 0
+    
+    best_loss, best_F, non_descent_cnt, saveNo = run_eval(model, valid_loader, valset, hps, best_loss, best_F, non_descent_cnt, saveNo)
+    if non_descent_cnt >= 3:
+            logger.error("[Error] val loss does not descent for three times. Stopping supervisor...")
+            save_model(model, os.path.join(train_dir, "earlystop"))
+            return
 
     for epoch in range(1, hps.n_epochs + 1):
         epoch_loss = 0.0
@@ -114,15 +120,13 @@ def run_training(model, train_loader, valid_loader, valset, hps, train_dir):
             # if i > 10:
             #     break
             model.train()
-
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
             if hps.cuda:
                 G.to(torch.device("cuda"))
             if hps.model == "HSG2":
                 outputs, adj_logits = model.forward(G)  # [n_snodes, 2]
-                adj = G.adjacency_matrix().to_dense()
-                if hps.cuda:
-                    adj.to("cuda")
-                pos_weight = ((adj.shape[0] * adj.shape[0] - adj.sum()) / adj.sum())
+                adj = G.adjacency_matrix().to_dense().to(device)
+                pos_weight = ((adj.shape[0] * adj.shape[0] - adj.sum()) / adj.sum()).to(device)
                 loss2 = BCELoss(adj_logits, adj, pos_weight=pos_weight)
             if hps.model == "HSG":
                 outputs = model.forward(G)  # [n_snodes, 2]
@@ -399,7 +403,7 @@ def main():
 
 
     if args.cuda:
-        model.to(torch.device("cuda:0"))
+        model.to(torch.device("cuda"))
         logger.info("[INFO] Use cuda")
 
     setup_training(model, train_loader, valid_loader, valid_dataset, hps)
