@@ -348,7 +348,7 @@ def main():
     if not os.path.exists(LOG_PATH):
         os.makedirs(LOG_PATH)
     nowTime = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    log_path = os.path.join(LOG_PATH, "train_" + nowTime)
+    log_path = os.path.join(LOG_PATH, "train_logger")
     file_handler = logging.FileHandler(log_path)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
