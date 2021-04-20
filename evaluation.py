@@ -172,8 +172,21 @@ def main():
     parser.add_argument('-m', type=int, default=3, help='decode summary length')
 
 
-    args = parser.parse_args()
+    # args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
+    # '--batch_size', '32', '--model_name', 'GCN',
+    #  '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../data/save1/', '--test_model', 'multi', '--use_pyrouge'])
 
+    # args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
+    # '--batch_size', '32', '--model_name', 'GAT',
+    #  '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../data/save2/', '--test_model', 'multi', '--use_pyrouge'])
+
+
+    args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
+    '--batch_size', '32', '--model_name', 'GAE',
+     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG2', '--save_root', '../data/save3/', '--test_model', 'multi', '--use_pyrouge'])
+
+
+    logger.info(f"test evaluate on {args.data_dir.split('/')[-1]} dataset with {args.model_name} {args.save_root}")
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
     torch.set_printoptions(threshold=50000)
 
@@ -188,7 +201,7 @@ def main():
         logger.exception("[Error] Logdir %s doesn't exist. Run in train mode to create it.", LOG_PATH)
         raise Exception("[Error] Logdir %s doesn't exist. Run in train mode to create it." % (LOG_PATH))
     nowTime=datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    log_path = os.path.join(LOG_PATH, "test_" + nowTime)
+    log_path = os.path.join(LOG_PATH, "test_log" + args.data_dir.split('/')[-1] + args.model_name)
     file_handler = logging.FileHandler(log_path)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)

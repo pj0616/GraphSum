@@ -288,6 +288,7 @@ def main():
 
     # Important settings
     parser.add_argument('--model', type=str, default='HSG', help='model structure[HSG|HSG2|HDSG]')
+    parser.add_argument('--model_name', type=str, default='GAT', help='model structure[GAT|GCN|GAE]')
     parser.add_argument('--restore_model', type=str, default='None', help='Restore model for further training. [bestmodel/bestFmodel/earlystop/None]')
 
     # Where to save output
@@ -329,11 +330,22 @@ def main():
 
     parser.add_argument('-m', type=int, default=3, help='decode summary length')
 
-    args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
-    '--batch_size', '32',
-     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG2', '--save_root', '../data/save4/', '--restore_model', 'None'])
 
-    logger.info("train on MultiNews dataset with GAE ../data/save4/")
+    # args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
+    # '--batch_size', '32', '--model_name', 'GCN',
+    #  '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../data/save1/'])
+
+    # args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
+    # '--batch_size', '32', '--model_name', 'GAT',
+    #  '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG', '--save_root', '../data/save2/'])
+
+
+    args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
+    '--batch_size', '32', '--model_name', 'GAE',
+     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG2', '--save_root', '../data/save3/', ''])
+
+
+    logger.info(f"train on {args.data_dir.split('/')[-1]} dataset with {args.model_name} {args.save_root}")
     os.environ['CUDA_VISIBLE_DEVICES'] = '3'
     torch.set_printoptions(threshold=50000)
 
@@ -349,7 +361,7 @@ def main():
     if not os.path.exists(LOG_PATH):
         os.makedirs(LOG_PATH)
     nowTime = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    log_path = os.path.join(LOG_PATH, "train_logger")
+    log_path = os.path.join(LOG_PATH, "train_log" + args.data_dir.split('/')[-1] + args.model_name)
     file_handler = logging.FileHandler(log_path)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)

@@ -55,26 +55,48 @@ class HSumGraph(nn.Module):
 
         # word -> sent
         embed_size = hps.word_emb_dim
-        self.word2sent = WSWGCN(in_dim=embed_size,
-                                out_dim=hps.hidden_size,
-                                num_heads=hps.n_head,
-                                attn_drop_out=hps.atten_dropout_prob,
-                                ffn_inner_hidden_size=hps.ffn_inner_hidden_size,
-                                ffn_drop_out=hps.ffn_dropout_prob,
-                                feat_embed_size=hps.feat_embed_size,
-                                layerType="W2S"
-                                )
+        if hps.model_name == 'GCN':
+            self.word2sent = WSWGCN(in_dim=embed_size,
+                                    out_dim=hps.hidden_size,
+                                    num_heads=hps.n_head,
+                                    attn_drop_out=hps.atten_dropout_prob,
+                                    ffn_inner_hidden_size=hps.ffn_inner_hidden_size,
+                                    ffn_drop_out=hps.ffn_dropout_prob,
+                                    feat_embed_size=hps.feat_embed_size,
+                                    layerType="W2S"
+                                    )
 
-        # sent -> word
-        self.sent2word = WSWGCN(in_dim=hps.hidden_size,
-                                out_dim=embed_size,
-                                num_heads=6,
-                                attn_drop_out=hps.atten_dropout_prob,
-                                ffn_inner_hidden_size=hps.ffn_inner_hidden_size,
-                                ffn_drop_out=hps.ffn_dropout_prob,
-                                feat_embed_size=hps.feat_embed_size,
-                                layerType="S2W"
-                                )
+            # sent -> word
+            self.sent2word = WSWGCN(in_dim=hps.hidden_size,
+                                    out_dim=embed_size,
+                                    num_heads=6,
+                                    attn_drop_out=hps.atten_dropout_prob,
+                                    ffn_inner_hidden_size=hps.ffn_inner_hidden_size,
+                                    ffn_drop_out=hps.ffn_dropout_prob,
+                                    feat_embed_size=hps.feat_embed_size,
+                                    layerType="S2W"
+                                    )
+        if hps.model_name == 'GAT':
+            self.word2sent = WSWGAT(in_dim=embed_size,
+                                    out_dim=hps.hidden_size,
+                                    num_heads=hps.n_head,
+                                    attn_drop_out=hps.atten_dropout_prob,
+                                    ffn_inner_hidden_size=hps.ffn_inner_hidden_size,
+                                    ffn_drop_out=hps.ffn_dropout_prob,
+                                    feat_embed_size=hps.feat_embed_size,
+                                    layerType="W2S"
+                                    )
+
+            # sent -> word
+            self.sent2word = WSWGAT(in_dim=hps.hidden_size,
+                                    out_dim=embed_size,
+                                    num_heads=6,
+                                    attn_drop_out=hps.atten_dropout_prob,
+                                    ffn_inner_hidden_size=hps.ffn_inner_hidden_size,
+                                    ffn_drop_out=hps.ffn_dropout_prob,
+                                    feat_embed_size=hps.feat_embed_size,
+                                    layerType="S2W"
+                                    )
 
         
 
