@@ -1,7 +1,8 @@
 # GraphSum
-HiGraph include the implement of GAT and GCN
-Higraph2 include the implement of GAE
+Multiple Graph Neural Networks Method  for Extractive Document Summarization
 
+HiGraph includes the implement of GAT and GCN
+Higraph2 includes the implement of GAE
 
 ## Data
 
