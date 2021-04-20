@@ -295,7 +295,7 @@ def main():
     parser.add_argument('--log_root', type=str, default='log/', help='Root directory for all logging.')
 
     # Hyperparameters
-    parser.add_argument('--gpu', type=str, default='0', help='GPU ID to use. [default: 0]')
+    parser.add_argument('--gpu', type=str, default='1', help='GPU ID to use. [default: 0]')
     parser.add_argument('--cuda', action='store_true', default=False, help='GPU or CPU [default: False]')
     parser.add_argument('--vocab_size', type=int, default=50000,help='Size of vocabulary. [default: 50000]')
     parser.add_argument('--n_epochs', type=int, default=20, help='Number of epochs [default: 20]')
@@ -329,11 +329,12 @@ def main():
 
     parser.add_argument('-m', type=int, default=3, help='decode summary length')
 
-    args = parser.parse_args(['--cuda','--data_dir', '../data/cnndm', '--gpu', '1', '--cache_dir', '../data/cache/CNNDM', '--log_root', '../data/log/',
+    args = parser.parse_args(['--cuda','--data_dir', '../data/multinews', '--cache_dir', '../data/cache/MultiNews', '--log_root', '../data/log/',
     '--batch_size', '32',
-     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG2', '--save_root', '../data/save3/', '--restore_model', 'None'])
+     '--embedding_path', '../data/glove.6B/glove.6B.300d.txt', '--model', 'HSG2', '--save_root', '../data/save4/', '--restore_model', 'None'])
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+    logger.info("train on MultiNews dataset with GAE ../data/save4/")
+    os.environ['CUDA_VISIBLE_DEVICES'] = '3'
     torch.set_printoptions(threshold=50000)
 
     # File paths
