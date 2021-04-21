@@ -40,6 +40,7 @@ from tools.logger import *
 import os
 import sys
 os.chdir(sys.path[0])
+
 # sys.path.append('../')
 
 
@@ -346,7 +347,7 @@ def main():
 
 
     logger.info(f"train on {args.data_dir.split('/')[-1]} dataset with {args.model_name} {args.save_root}")
-    os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     torch.set_printoptions(threshold=50000)
 
     # File paths
